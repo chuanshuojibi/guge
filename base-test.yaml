@@ -1,0 +1,20 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+proxies: []
+proxy-groups:
+  - name: 🧩 低倍率
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    include-all: true
+    filter: '\|x(0\.5|1|2)$'
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - 🧩 低倍率
+      - DIRECT
+rules:
+  - DOMAIN-SUFFIX,google.com,🚀 节点选择
+  - MATCH,DIRECT
