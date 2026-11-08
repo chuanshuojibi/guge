@@ -1,0 +1,21 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+proxies: []
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - DIRECT
+rule-providers:
+  openai:
+    type: http
+    behavior: domain
+    url: https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/openai.mrs
+    path: ./ruleset/openai.mrs
+    interval: 86400
+    format: mrs
+rules:
+  - RULE-SET,openai,💬 Ai平台
+  - MATCH,DIRECT
